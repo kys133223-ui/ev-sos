@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesla SOS Korea — 테슬라 사고 긴급 대처</title>
+<meta name="description" content="테슬라 사고 발생 시 가까운 공인 서비스센터, 바디샵, 협력 수리점을 즉시 찾아드립니다. TKC 커뮤니티 + 테슬라 공식 데이터.">
+<meta property="og:title" content="Tesla SOS Korea">
+<meta property="og:description" content="사고 발생 시 가까운 테슬라 서비스센터·바디샵 즉시 검색">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #E31937;
+  --red-dim: #9E1126;
+  --bg: #0A0A0A;
+  --bg2: #111111;
+  --bg3: #181818;
+  --bg4: #222222;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #F0F0F0;
+  --text2: #999;
+  --text3: #555;
+  --amber: #F59E0B;
+  --amber-bg: rgba(245,158,11,0.12);
+  --blue: #3B82F6;
+  --blue-bg: rgba(59,130,246,0.12);
+  --green: #22C55E;
+  --green-bg: rgba(34,197,94,0.12);
+  --crash-bg: rgba(245,158,11,0.08);
+  --crash-border: rgba(245,158,11,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-t {
+  width: 28px;
+  height: 28px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-t svg { width: 16px; height: 16px; fill: white; }
+.logo-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.logo-name span { color: var(--red); }
+.header-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 3rem 1.5rem 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.hero-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--red);
+}
+.hero-sub {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* ── SOS BUTTON ── */
+.sos-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  padding: 15px 24px;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: background 0.15s, transform 0.1s;
+  margin-bottom: 0.5rem;
+}
+.sos-btn:hover { background: #c8142f; }
+.sos-btn:active { transform: scale(0.98); }
+.sos-sub {
+  font-size: 12px;
+  color: var(--text3);
+  text-align: center;
+  max-width: 400px;
+}
+
+/* ── GUIDE CARDS ── */
+.guide-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+}
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+.guide-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.guide-card.warranty { border-color: rgba(59,130,246,0.25); }
+.guide-card.crash { border-color: rgba(245,158,11,0.25); }
+.guide-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.guide-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.guide-desc {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+/* ── CONTROLS ── */
+.controls {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 1.5rem;
+}
+.loc-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.loc-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-decoration: none;
+}
+.loc-bar:hover { border-color: var(--border2); }
+.loc-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--text3);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.loc-dot.on { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.loc-bar-text { font-size: 13px; color: var(--text2); }
+.reset-btn {
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+.reset-btn:hover { border-color: var(--border2); color: var(--text); }
+
+.search-wrap { position: relative; margin-bottom: 0.5rem; }
+.search-row { display: flex; gap: 8px; }
+.search-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.search-input::placeholder { color: var(--text3); }
+.search-input:focus { border-color: var(--border2); }
+.search-btn {
+  padding: 10px 16px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.search-btn:hover { border-color: var(--border2); color: var(--text); }
+.search-hint {
+  font-size: 12px;
+  color: var(--text3);
+  padding-left: 2px;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.autocomplete {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 56px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  z-index: 50;
+  overflow: hidden;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.ac-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.ac-item:last-child { border-bottom: none; }
+.ac-item:hover { background: var(--bg4); }
+.ac-name { font-size: 13px; color: var(--text); }
+.ac-region { font-size: 11px; color: var(--text3); }
+.ac-tag {
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--blue);
+  background: var(--blue-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ── STATUS ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 1rem;
+}
+.status-bar b { color: var(--text); font-weight: 500; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+/* ── TABS ── */
+.tabs-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tab:hover { border-color: var(--border2); color: var(--text); }
+.tab.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+.tab-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+/* ── LIST ── */
+.list-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.section-header {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--border2); }
+.card.crash-card {
+  background: var(--crash-bg);
+  border-color: var(--crash-border);
+}
+.card.crash-card:hover { border-color: rgba(245,158,11,0.5); }
+
+.rank-badge {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-family: 'DM Mono', monospace;
+}
+.rank-t { background: rgba(227,25,55,0.15); color: var(--red); }
+.rank-crash { background: var(--amber-bg); color: var(--amber); }
+.rank-b { background: var(--bg3); color: var(--text3); }
+.rank-c { background: var(--blue-bg); color: var(--blue); }
+
+.card-body { flex: 1; min-width: 0; }
+.card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.card-addr {
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.card-phones {
+  font-size: 12px;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.card-meta { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+
+.badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.b-official { background: rgba(227,25,55,0.15); color: var(--red); border: 1px solid rgba(227,25,55,0.25); }
+.b-crash-off { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.3); }
+.b-body { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+.b-coop { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+.b-region { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
+.b-hv { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
+.b-dist {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(59,130,246,0.25);
+  font-family: 'DM Mono', monospace;
+}
+.b-new { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.btn-call {
+  padding: 7px 14px;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.btn-call:hover { background: var(--red-dim); }
+.btn-map {
+  padding: 7px 14px;
+  background: var(--bg3);
+  color: var(--text2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.btn-map:hover { border-color: var(--border2); color: var(--text); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem 0;
+}
+
+/* ── RENT ── */
+.rent-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.rent-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.rent-row:last-child { border-bottom: none; }
+.rent-name { font-size: 13px; color: var(--text2); }
+.rent-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+.rent-num:hover { text-decoration: underline; }
+
+/* ── INFO BOX ── */
+.info-box {
+  background: var(--amber-bg);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #d4a017;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  max-width: 640px;
+  margin: 3rem auto 0;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.footer-data {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  line-height: 1.8;
+}
+.footer-data a { color: var(--text3); }
+.footer-divider { margin: 1rem 0; height: 1px; background: var(--border); }
+.footer-copy {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+/* ── HIDDEN ── */
+.hidden { display: none !important; }
+
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+  .guide-grid { grid-template-columns: 1fr; }
+  .card-phones { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#">
+    <div class="logo-t">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    </div>
+    <span class="logo-name">Tesla <span>SOS</span> Korea</span>
+  </a>
+  <span class="header-badge">TKC DATA</span>
+</header>
+
+<section class="hero">
+  <p class="hero-label">사고 발생 시 즉시 확인</p>
+  <h1>가장 가까운<br><em>테슬라 수리점</em>을<br>바로 찾으세요</h1>
+  <p class="hero-sub">
+    테슬라 공식 서비스센터 16곳 · 공인 바디샵 21곳 · TKC 협력 수리점 11곳<br>
+    위치 기반으로 거리순 정렬됩니다
+  </p>
+  <a href="tel:080-617-1399" class="sos-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    긴급 출동 — 080-617-1399
+  </a>
+  <p class="sos-sub">24시간 무료 · 테슬라 긴급출동 서비스</p>
+</section>
+
+<section class="guide-section">
+  <div class="guide-grid">
+    <div class="guide-card warranty">
+      <div class="guide-icon">🔧</div>
+      <div class="guide-title">보증 수리 · 일반 정비</div>
+      <div class="guide-desc">공식 서비스센터 방문<br>무상 AS · 소프트웨어 업데이트</div>
+    </div>
+    <div class="guide-card crash">
+      <div class="guide-icon">🚗</div>
+      <div class="guide-title">사고 수리 · 판금 · 도장</div>
+      <div class="guide-desc">공식 사고수리센터(용인·동탄)<br>또는 공인 바디샵 · 협력점</div>
+    </div>
+  </div>
+</section>
+
+<section class="controls">
+  <div class="loc-row">
+    <div class="loc-bar" id="loc-bar" onclick="requestGPS()">
+      <div class="loc-dot" id="loc-dot"></div>
+      <span class="loc-bar-text" id="loc-text">내 위치 사용하기 — 탭하여 허용</span>
+    </div>
+    <button class="reset-btn" onclick="resetLocation()">초기화</button>
+  </div>
+  <div class="search-wrap">
+    <div class="search-row">
+      <input class="search-input" id="search-input" type="text"
+        placeholder="센터명 또는 지역명 검색 (천우, FMK, 금천구, 가산로...)"
+        oninput="onInput()" onkeydown="onKey(event)" autocomplete="off">
+      <button class="search-btn" onclick="doSearch()">검색</button>
+    </div>
+    <div class="autocomplete hidden" id="ac"></div>
+  </div>
+  <p class="search-hint">센터명: 천우 · FMK · 협신 · 자일 &nbsp;|&nbsp; 지역: 금천구 · 가산로 · 해운대구</p>
+  <div class="status-bar hidden" id="status-bar">
+    <div class="status-dot"></div>
+    <span id="status-text"></span>
+  </div>
+</section>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('all',this)">전체</button>
+    <button class="tab" onclick="showTab('tesla',this)">공인센터 <span class="tab-count">16</span></button>
+    <button class="tab" onclick="showTab('body',this)">바디샵 <span class="tab-count">21</span></button>
+    <button class="tab" onclick="showTab('coop',this)">협력점 <span class="tab-count">11</span></button>
+    <button class="tab" onclick="showTab('rent',this)">사고렌트</button>
+  </div>
+</div>
+
+<main class="list-section">
+
+  <!-- ALL TAB -->
+  <div id="tab-all">
+    <p class="section-header" id="tesla-label">테슬라 공인 서비스센터 · 16곳</p>
+    <div id="tesla-list"></div>
+    <div class="divider"></div>
+    <p class="section-header">테슬라 공인 바디샵 · 21곳 · 평일 09:00–18:00</p>
+    <div class="info-box">테슬라 지정 협력 공업사. 무상 AS 불가 — 사고 수리만 가능합니다.</div>
+    <div id="body-list"></div>
+    <div class="divider"></div>
+    <p class="section-header">TKC 협력 수리점 · 11곳 · 회원 우대</p>
+    <div id="coop-list"></div>
+    <div class="divider"></div>
+    <p class="section-header">사고 렌트카 연락처</p>
+    <div class="rent-card">
+      <div class="rent-row"><span class="rent-name">전자 (전국)</span><a class="rent-num" href="tel:1577-4081">1577-4081</a></div>
+      <div class="rent-row"><span class="rent-name">EV렌트카</span><a class="rent-num" href="tel:010-3510-8282">010-3510-8282</a></div>
+      <div class="rent-row"><span class="rent-name">모카</span><a class="rent-num" href="tel:1644-0411">1644-0411</a></div>
+      <div class="rent-row"><span class="rent-name">전북 · 광주 · 전남</span><a class="rent-num" href="tel:010-2789-4982">010-2789-4982</a></div>
+      <div class="rent-row"><span class="rent-name">충청 · 대전 · 세종</span><a class="rent-num" href="tel:010-2472-6035">010-2472-6035</a></div>
+    </div>
+  </div>
+
+  <!-- TESLA TAB -->
+  <div id="tab-tesla" class="hidden">
+    <p class="section-header" id="tesla-label2">테슬라 공인 서비스센터 · 16곳</p>
+    <div id="tesla-list2"></div>
+  </div>
+
+  <!-- BODY TAB -->
+  <div id="tab-body" class="hidden">
+    <p class="section-header">테슬라 공인 바디샵 · 21곳</p>
+    <div class="info-box">테슬라 지정 협력 공업사. 무상 AS 불가 — 사고 수리만 가능합니다.</div>
+    <div id="body-list2"></div>
+  </div>
+
+  <!-- COOP TAB -->
+  <div id="tab-coop" class="hidden">
+    <p class="section-header">TKC 협력 수리점 · 11곳 · 회원 우대</p>
+    <div id="coop-list2"></div>
+  </div>
+
+  <!-- RENT TAB -->
+  <div id="tab-rent" class="hidden">
+    <p class="section-header">사고 렌트카 연락처</p>
+    <div class="rent-card">
+      <div class="rent-row"><span class="rent-name">전자 (전국)</span><a class="rent-num" href="tel:1577-4081">1577-4081</a></div>
+      <div class="rent-row"><span class="rent-name">EV렌트카</span><a class="rent-num" href="tel:010-3510-8282">010-3510-8282</a></div>
+      <div class="rent-row"><span class="rent-name">모카</span><a class="rent-num" href="tel:1644-0411">1644-0411</a></div>
+      <div class="rent-row"><span class="rent-name">전북 · 광주 · 전남</span><a class="rent-num" href="tel:010-2789-4982">010-2789-4982</a></div>
+      <div class="rent-row"><span class="rent-name">충청 · 대전 · 세종</span><a class="rent-num" href="tel:010-2472-6035">010-2472-6035</a></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-data">
+    <div>📋 서비스센터 · 바디샵 데이터 출처</div>
+    <div style="color:#444;margin-top:4px;">
+      테슬라 공식 홈페이지 (2026년 기준) · TKC 테슬라 코리아 카페 (2024.07.30 기준)<br>
+      정보는 변경될 수 있으니 방문 전 반드시 확인하세요.
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">
+    Tesla SOS Korea · TKC 커뮤니티 데이터 기반 · 비공식 서비스
+  </div>
+</footer>
+
+<script>
+const GEO=[
+  {n:'종로구',p:'서울',lat:37.5735,lng:126.9788},{n:'중구',p:'서울',lat:37.5640,lng:126.9975},
+  {n:'용산구',p:'서울',lat:37.5311,lng:126.9810},{n:'성동구',p:'서울',lat:37.5633,lng:127.0371},
+  {n:'광진구',p:'서울',lat:37.5385,lng:127.0823},{n:'동대문구',p:'서울',lat:37.5744,lng:127.0397},
+  {n:'중랑구',p:'서울',lat:37.6063,lng:127.0927},{n:'성북구',p:'서울',lat:37.5894,lng:127.0167},
+  {n:'강북구',p:'서울',lat:37.6396,lng:127.0255},{n:'도봉구',p:'서울',lat:37.6688,lng:127.0471},
+  {n:'노원구',p:'서울',lat:37.6554,lng:127.0563},{n:'은평구',p:'서울',lat:37.6026,lng:126.9291},
+  {n:'서대문구',p:'서울',lat:37.5791,lng:126.9368},{n:'마포구',p:'서울',lat:37.5663,lng:126.9014},
+  {n:'양천구',p:'서울',lat:37.5170,lng:126.8667},{n:'강서구',p:'서울',lat:37.5509,lng:126.8495},
+  {n:'구로구',p:'서울',lat:37.4954,lng:126.8875},{n:'금천구',p:'서울',lat:37.4569,lng:126.8955},
+  {n:'영등포구',p:'서울',lat:37.5264,lng:126.8962},{n:'동작구',p:'서울',lat:37.5124,lng:126.9393},
+  {n:'관악구',p:'서울',lat:37.4784,lng:126.9516},{n:'서초구',p:'서울',lat:37.4837,lng:127.0324},
+  {n:'강남구',p:'서울',lat:37.5172,lng:127.0473},{n:'송파구',p:'서울',lat:37.5145,lng:127.1059},
+  {n:'강동구',p:'서울',lat:37.5301,lng:127.1238},
+  {n:'가산동',p:'서울 금천구',lat:37.4810,lng:126.8826},{n:'독산동',p:'서울 금천구',lat:37.4620,lng:126.8940},
+  {n:'신림동',p:'서울 관악구',lat:37.4842,lng:126.9294},{n:'역삼동',p:'서울 강남구',lat:37.5007,lng:127.0362},
+  {n:'삼성동',p:'서울 강남구',lat:37.5140,lng:127.0572},{n:'잠실동',p:'서울 송파구',lat:37.5133,lng:127.1001},
+  {n:'홍대',p:'서울 마포구',lat:37.5573,lng:126.9248},{n:'이태원동',p:'서울 용산구',lat:37.5345,lng:126.9943},
+  {n:'성수동',p:'서울 성동구',lat:37.5445,lng:127.0557},{n:'한남동',p:'서울 용산구',lat:37.5382,lng:127.0037},
+  {n:'해운대구',p:'부산',lat:35.1628,lng:129.1635},{n:'해운대',p:'부산',lat:35.1628,lng:129.1635},
+  {n:'수영구',p:'부산',lat:35.1453,lng:129.1133},{n:'부산진구',p:'부산',lat:35.1631,lng:129.0532},
+  {n:'동래구',p:'부산',lat:35.2041,lng:129.0845},{n:'연제구',p:'부산',lat:35.1834,lng:129.0746},
+  {n:'사상구',p:'부산',lat:35.1538,lng:128.9912},{n:'사하구',p:'부산',lat:35.1046,lng:128.9745},
+  {n:'금정구',p:'부산',lat:35.2428,lng:129.0921},{n:'기장군',p:'부산',lat:35.2448,lng:129.2220},
+  {n:'중구',p:'부산',lat:35.1060,lng:129.0324},{n:'서구',p:'부산',lat:35.0971,lng:129.0245},
+  {n:'동구',p:'부산',lat:35.1360,lng:129.0588},{n:'영도구',p:'부산',lat:35.0914,lng:129.0686},
+  {n:'남구',p:'부산',lat:35.1366,lng:129.0843},{n:'북구',p:'부산',lat:35.2097,lng:128.9949},
+  {n:'강서구',p:'부산',lat:35.2112,lng:128.9806},
+  {n:'수원시',p:'경기',lat:37.2636,lng:127.0286},{n:'성남시',p:'경기',lat:37.4449,lng:127.1388},
+  {n:'고양시',p:'경기',lat:37.6584,lng:126.8320},{n:'용인시',p:'경기',lat:37.2411,lng:127.1776},
+  {n:'부천시',p:'경기',lat:37.5034,lng:126.7660},{n:'안산시',p:'경기',lat:37.3219,lng:126.8309},
+  {n:'안양시',p:'경기',lat:37.3943,lng:126.9568},{n:'남양주시',p:'경기',lat:37.6359,lng:127.2167},
+  {n:'화성시',p:'경기',lat:37.1996,lng:126.8311},{n:'평택시',p:'경기',lat:36.9921,lng:127.1128},
+  {n:'의정부시',p:'경기',lat:37.7380,lng:127.0337},{n:'시흥시',p:'경기',lat:37.3800,lng:126.8031},
+  {n:'파주시',p:'경기',lat:37.7600,lng:126.7799},{n:'광명시',p:'경기',lat:37.4784,lng:126.8665},
+  {n:'김포시',p:'경기',lat:37.6152,lng:126.7158},{n:'군포시',p:'경기',lat:37.3614,lng:126.9351},
+  {n:'하남시',p:'경기',lat:37.5395,lng:127.2148},{n:'과천시',p:'경기',lat:37.4292,lng:126.9877},
+  {n:'구리시',p:'경기',lat:37.5943,lng:127.1296},{n:'이천시',p:'경기',lat:37.2724,lng:127.4344},
+  {n:'포천시',p:'경기',lat:37.8943,lng:127.2003},{n:'광주시',p:'경기도',lat:37.4296,lng:127.2553},
+  {n:'분당구',p:'경기 성남',lat:37.3794,lng:127.1219},{n:'일산동구',p:'경기 고양',lat:37.6762,lng:126.7901},
+  {n:'일산서구',p:'경기 고양',lat:37.6784,lng:126.7469},{n:'덕양구',p:'경기 고양',lat:37.6343,lng:126.8376},
+  {n:'기흥구',p:'경기 용인',lat:37.2751,lng:127.1157},{n:'수지구',p:'경기 용인',lat:37.3219,lng:127.0953},
+  {n:'처인구',p:'경기 용인',lat:37.2341,lng:127.2049},{n:'동안구',p:'경기 안양',lat:37.3943,lng:126.9568},
+  {n:'동탄',p:'경기 화성',lat:37.2009,lng:127.0748},{n:'판교',p:'경기 성남',lat:37.3943,lng:127.1112},
+  {n:'정왕동',p:'경기 시흥',lat:37.3537,lng:126.7360},{n:'영통구',p:'경기 수원',lat:37.2599,lng:127.0556},
+  {n:'중구',p:'인천',lat:37.4742,lng:126.6216},{n:'연수구',p:'인천',lat:37.4103,lng:126.6783},
+  {n:'남동구',p:'인천',lat:37.4469,lng:126.7310},{n:'부평구',p:'인천',lat:37.5074,lng:126.7218},
+  {n:'계양구',p:'인천',lat:37.5375,lng:126.7376},{n:'서구',p:'인천',lat:37.5455,lng:126.6764},
+  {n:'동구',p:'인천',lat:37.4738,lng:126.6430},{n:'미추홀구',p:'인천',lat:37.4638,lng:126.6503},
+  {n:'강화군',p:'인천',lat:37.7463,lng:126.4877},{n:'옹진군',p:'인천',lat:37.4461,lng:126.1611},
+  {n:'송도',p:'인천',lat:37.3829,lng:126.6539},{n:'청라',p:'인천',lat:37.5391,lng:126.6434},
+  {n:'수성구',p:'대구',lat:35.8584,lng:128.6306},{n:'달서구',p:'대구',lat:35.8469,lng:128.5051},
+  {n:'북구',p:'대구',lat:35.8855,lng:128.5830},{n:'달성군',p:'대구',lat:35.7749,lng:128.4317},
+  {n:'중구',p:'대구',lat:35.8698,lng:128.6063},{n:'서구',p:'대구',lat:35.8719,lng:128.5597},
+  {n:'동구',p:'대구',lat:35.8869,lng:128.6353},{n:'남구',p:'대구',lat:35.8459,lng:128.5997},
+  {n:'광산구',p:'광주',lat:35.1834,lng:126.7939},{n:'북구',p:'광주',lat:35.1763,lng:126.9116},
+  {n:'남구',p:'광주',lat:35.1267,lng:126.9019},{n:'동구',p:'광주',lat:35.1455,lng:126.9236},
+  {n:'서구',p:'광주',lat:35.1518,lng:126.8915},
+  {n:'유성구',p:'대전',lat:36.3624,lng:127.3561},{n:'대덕구',p:'대전',lat:36.3464,lng:127.4154},
+  {n:'서구',p:'대전',lat:36.3553,lng:127.3833},{n:'동구',p:'대전',lat:36.3122,lng:127.4545},
+  {n:'중구',p:'대전',lat:36.3254,lng:127.4211},{n:'남구',p:'대전',lat:36.3044,lng:127.3931},
+  {n:'남구',p:'울산',lat:35.5384,lng:129.3114},{n:'울주군',p:'울산',lat:35.5220,lng:129.1861},
+  {n:'중구',p:'울산',lat:35.5699,lng:129.3317},{n:'동구',p:'울산',lat:35.5053,lng:129.4163},
+  {n:'북구',p:'울산',lat:35.5828,lng:129.3612},
+  {n:'세종시',p:'세종',lat:36.4801,lng:127.2891},{n:'세종',p:'세종',lat:36.4801,lng:127.2891},
+  {n:'어진동',p:'세종',lat:36.4965,lng:127.2847},
+  {n:'춘천시',p:'강원',lat:37.8813,lng:127.7298},{n:'원주시',p:'강원',lat:37.3422,lng:127.9202},
+  {n:'강릉시',p:'강원',lat:37.7519,lng:128.8761},{n:'속초시',p:'강원',lat:38.2048,lng:128.5912},
+  {n:'청주시',p:'충북',lat:36.6424,lng:127.4890},{n:'충주시',p:'충북',lat:36.9910,lng:127.9259},
+  {n:'천안시',p:'충남',lat:36.8151,lng:127.1139},{n:'아산시',p:'충남',lat:36.7895,lng:127.0021},
+  {n:'전주시',p:'전북',lat:35.8242,lng:127.1480},{n:'군산시',p:'전북',lat:35.9677,lng:126.7368},
+  {n:'목포시',p:'전남',lat:34.8118,lng:126.3922},{n:'여수시',p:'전남',lat:34.7604,lng:127.6622},
+  {n:'순천시',p:'전남',lat:34.9506,lng:127.4874},
+  {n:'포항시',p:'경북',lat:36.0190,lng:129.3435},{n:'경주시',p:'경북',lat:35.8562,lng:129.2247},
+  {n:'구미시',p:'경북',lat:36.1196,lng:128.3446},{n:'안동시',p:'경북',lat:36.5684,lng:128.7294},
+  {n:'창원시',p:'경남',lat:35.2286,lng:128.6811},{n:'진주시',p:'경남',lat:35.1799,lng:128.1076},
+  {n:'김해시',p:'경남',lat:35.2286,lng:128.8811},{n:'거제시',p:'경남',lat:34.8802,lng:128.6212},
+  {n:'양산시',p:'경남',lat:35.3350,lng:129.0363},
+  {n:'제주시',p:'제주',lat:33.4996,lng:126.5312},{n:'서귀포시',p:'제주',lat:33.2541,lng:126.5600},
+  {n:'애월읍',p:'제주',lat:33.4631,lng:126.3258},{n:'제주',p:'제주',lat:33.4996,lng:126.5312},
+  {n:'서울',p:'서울특별시',lat:37.5665,lng:126.9780},{n:'부산',p:'부산광역시',lat:35.1796,lng:129.0756},
+  {n:'대구',p:'대구광역시',lat:35.8714,lng:128.6014},{n:'인천',p:'인천광역시',lat:37.4563,lng:126.7052},
+  {n:'광주',p:'광주광역시',lat:35.1595,lng:126.8526},{n:'대전',p:'대전광역시',lat:36.3504,lng:127.3845},
+  {n:'울산',p:'울산광역시',lat:35.5384,lng:129.3114},{n:'경기',p:'경기도',lat:37.4138,lng:127.5183},
+  {n:'강원',p:'강원특별자치도',lat:37.8228,lng:128.1555},{n:'충북',p:'충청북도',lat:36.6357,lng:127.4914},
+  {n:'충남',p:'충청남도',lat:36.5184,lng:126.8001},{n:'전북',p:'전라북도',lat:35.7175,lng:127.1530},
+  {n:'전남',p:'전라남도',lat:34.8161,lng:126.4629},{n:'경북',p:'경상북도',lat:36.4919,lng:128.8889},
+  {n:'경남',p:'경상남도',lat:35.4606,lng:128.2132},
+];
+
+const ROAD_SUFFIX=/(\d+가?\s*)?(대로|로|길)(\s*\d+번길)?$/;
+
+// p 필드(지역)와 n 필드(이름)를 합친 full key로 매칭
+// 예) "인천 서구" → p에 "인천" 포함 & n이 "서구"인 항목 우선 반환
+function resolveQuery(input){
+  const q = input.trim();
+  const gs = [...GEO].sort((a,b) => b.n.length - a.n.length);
+
+  // 0단계: "시도+구/시/군" 조합 매칭 (예: "인천 서구", "부산 강서구", "경기 광주시")
+  //  → p에 앞부분이 포함되고, n에 뒷부분이 포함되는 항목 찾기
+  const parts = q.split(/\s+/);
+  if (parts.length >= 2) {
+    const regionHint = parts[0];   // 예: "인천"
+    const nameHint   = parts.slice(1).join(' ');  // 예: "서구"
+    const combo = GEO.filter(g =>
+      g.p.includes(regionHint) && g.n.includes(nameHint)
+    );
+    if (combo.length > 0) return { geo: combo[0], method: 'combo' };
+  }
+
+  // 1단계: q 전체가 p+n 합친 문자열에 포함되는 항목 (긴 것 우선)
+  for(const g of gs){
+    const full = g.p + ' ' + g.n;  // 예: "인천 서구"
+    if(full.includes(q) || q.includes(g.n) && q.includes(g.p.split(' ').pop())) {
+      return { geo:g, method:'direct' };
+    }
+  }
+
+  // 2단계: n만으로 매칭 (기존 로직)
+  for(const g of gs) if(q.includes(g.n)) return{geo:g,method:'direct'};
+
+  // 3단계: 도로명 파싱
+  const stripped=q.replace(ROAD_SUFFIX,'').replace(/\d+/g,'').trim();
+  if(stripped.length>=2){
+    for(const g of gs) if(stripped.includes(g.n)||g.n.includes(stripped)) return{geo:g,method:'road'};
+    for(let len=Math.min(stripped.length,4);len>=2;len--){
+      const pre=stripped.slice(0,len);
+      for(const g of gs) if(g.n.startsWith(pre)||g.n.includes(pre)) return{geo:g,method:'prefix'};
+    }
+  }
+  const clean=q.replace(/[0-9\-\.]/g,'').replace(ROAD_SUFFIX,'').trim();
+  for(let len=Math.min(clean.length,4);len>=2;len--){
+    const pre=clean.slice(0,len);
+    for(const g of gs) if(g.n.startsWith(pre)) return{geo:g,method:'fuzzy'};
+  }
+  return null;
+}
+function getCandidates(q){
+  const results=[],seen=new Set();
+  const gs=[...GEO].sort((a,b)=>b.n.length-a.n.length);
+  for(const g of gs){
+    if((g.n.includes(q)||g.p.includes(q))&&!seen.has(g.n)){
+      seen.add(g.n);
+      results.push({geo:g,label:g.n,sub:g.p,tag:null});
+      if(results.length>=4) break;
+    }
+  }
+  if(q.length>=2){
+    const r=resolveQuery(q);
+    if(r&&!seen.has(r.geo.n)) results.push({geo:r.geo,label:`"${q}"`,sub:r.geo.p,tag:r.geo.n+' 기준'});
+  }
+  return results.slice(0,6);
+}
+
+const TESLA=[
+  {name:'강서 서비스센터',addr:'서울 강서구 양천로66길 5',phone:'080-617-1399',region:'서울',hv:false,crash:false,lat:37.5515,lng:126.8495,isNew:false},
+  {name:'문정 서비스센터',addr:'서울 송파구 동남로4길 36-1',phone:'080-617-1399',region:'서울',hv:false,crash:false,lat:37.4862,lng:127.1228,isNew:false},
+  {name:'성수 서비스센터',addr:'서울 성동구 광나루로8길 6',phone:'080-617-1399',region:'서울',hv:true,crash:false,lat:37.5445,lng:127.0557,isNew:false},
+  {name:'노원 서비스센터',addr:'서울 노원구 수락산로 218-2',phone:'080-617-1399',region:'서울',hv:false,crash:false,lat:37.6658,lng:127.0752,isNew:true},
+  {name:'분당 서비스센터',addr:'경기 성남시 대왕판교로 316',phone:'080-617-1399',region:'경기',hv:false,crash:false,lat:37.3943,lng:127.1112,isNew:false},
+  {name:'용인 사고수리센터',addr:'경기 용인시 기흥구 중부대로 14',phone:'080-617-1399',region:'경기',hv:false,crash:true,lat:37.2751,lng:127.1157,isNew:false},
+  {name:'일산 서비스센터',addr:'경기 고양시 덕이로 205',phone:'080-617-1399',region:'경기',hv:true,crash:false,lat:37.6938,lng:126.7735,isNew:false},
+  {name:'동탄 사고수리센터',addr:'경기 화성시 경기동로 348',phone:'080-617-1399',region:'경기',hv:true,crash:true,lat:37.2009,lng:127.0748,isNew:true},
+  {name:'인천 서비스센터',addr:'인천 앵고개로 673',phone:'080-617-1399',region:'인천',hv:true,crash:false,lat:37.4563,lng:126.7052,isNew:true},
+  {name:'세종 서비스센터',addr:'세종특별자치시 종합운동장로 19',phone:'080-617-1399',region:'세종',hv:true,crash:false,lat:36.4801,lng:127.2891,isNew:true},
+  {name:'원주 서비스센터',addr:'강원 원주시 지정면 신평리 1114-2',phone:'080-617-1399',region:'강원',hv:false,crash:false,lat:37.3736,lng:127.9620,isNew:false},
+  {name:'부산 서비스센터',addr:'부산 연제구 좌수영로 290',phone:'080-617-1399',region:'부산',hv:true,crash:false,lat:35.1834,lng:129.0746,isNew:false},
+  {name:'창원 서비스센터',addr:'경남 창원시 의창구 차상로 56',phone:'080-617-1399',region:'경남',hv:false,crash:false,lat:35.2286,lng:128.6811,isNew:true},
+  {name:'대구 서비스센터',addr:'대구 동대구로 50',phone:'080-617-1399',region:'대구',hv:true,crash:false,lat:35.8714,lng:128.6014,isNew:false},
+  {name:'광주 서비스센터',addr:'광주 남구 서문대로517번길 13',phone:'080-617-1399',region:'광주',hv:true,crash:false,lat:35.1267,lng:126.9019,isNew:false},
+  {name:'제주 서비스센터',addr:'제주 애월읍 중산간서로 6432',phone:'080-617-1399',region:'제주',hv:true,crash:false,lat:33.4528,lng:126.4185,isNew:false},
+];
+const BODY=[
+  {name:'FMK (Forza Motors Korea)',addr:'서울 강서구 양천로 66길 5',phones:'02-6094-1200 / 1201\n010-9432-3374 / 3443',region:'서울',lat:37.5515,lng:126.8495},
+  {name:'마이스터모터스 서초양재',addr:'서울 서초구 매헌로 19 (2층)',phones:'02-1544-2111',region:'서울',lat:37.4717,lng:127.0393},
+  {name:'HK모터스 서초',addr:'서울 서초구 성촌4길 19',phones:'02-579-6361',region:'서울',lat:37.4834,lng:127.0077},
+  {name:'한불엠엔에스',addr:'서울 성동구 광나루로 310 푸조비즈타워 1층',phones:'02-462-3008',region:'서울',lat:37.5440,lng:127.0563},
+  {name:'기흥오토서비스 (용산)',addr:'서울 용산구 한남대로21길 23',phones:'010-4657-4540',region:'서울',lat:37.5340,lng:127.0046},
+  {name:'기흥오토서비스 인천',addr:'인천 신흥동3가 33-35',phones:'032-887-3007',region:'인천',lat:37.4500,lng:126.7041},
+  {name:'천우일산',addr:'경기 고양시 일산동구 백마로 512',phones:'031-961-0602',region:'경기',lat:37.6762,lng:126.7901},
+  {name:'천우분당',addr:'경기 성남시 대왕판교로 316',phones:'031-715-4200',region:'경기',lat:37.3943,lng:127.1112},
+  {name:'센트럴모터스',addr:'경기 수원시 권선구 정조로 336',phones:'031-292-1236',region:'경기',lat:37.2636,lng:127.0277},
+  {name:'용인 사고 수리센터',addr:'경기 용인시 기흥구 중부대로 14',phones:'080-617-1399',region:'경기',lat:37.2751,lng:127.1157},
+  {name:'자일평촌서비스',addr:'경기 안양시 동안구 벌말로 40 (관양동)',phones:'031-421-6020~5',region:'경기',lat:37.3943,lng:126.9568},
+  {name:'자일분당서비스',addr:'경기 성남시 분당구 대왕판교로 148',phones:'0507-1329-6501',region:'경기',lat:37.3852,lng:127.1093},
+  {name:'JS모터스',addr:'대전 동구 대전로 723-8',phones:'042-284-4974',region:'대전',lat:36.3504,lng:127.4245},
+  {name:'협신자동차',addr:'부산 연제구 월드컵대로 180',phones:'051-866-0038',region:'부산',lat:35.1960,lng:129.0749},
+  {name:'JS모터스 (대전 동구)',addr:'대전 동구 대전로 723-8',phones:'042-284-4974',region:'대전',lat:36.3504,lng:127.4245},
+  {name:'YM 서비스',addr:'대구 달서구 성서4차첨단로 182',phones:'053-580-7040',region:'대구',lat:35.8469,lng:128.5051},
+  {name:'협신부산',addr:'부산 연제구 월드컵대로 180',phones:'051-866-0038',region:'부산',lat:35.1960,lng:129.0749},
+  {name:'협신사상',addr:'부산 사상구 가야대로 180',phones:'051-311-7300',region:'부산',lat:35.1538,lng:128.9912},
+  {name:'성진정비 서김해점',addr:'경남 김해시 서김해산단안길 76',phones:'055-716-8288',region:'경남',lat:35.2341,lng:128.8816},
+  {name:'S 모터스',addr:'광주 광산구 어동대로 605',phones:'062-460-1100',region:'광주',lat:35.1834,lng:126.7939},
+  {name:'천우모빌리티',addr:'제주 제주시 연삼로 759 (화북이동)',phones:'064-805-5222',region:'제주',lat:33.5244,lng:126.5711},
+];
+const COOP=[
+  {name:'테브코리아',addr:'경기 파주시 소라지로 195번길 110',phones:'031-947-3652',region:'경기',lat:37.7397,lng:126.7686},
+  {name:'에스원모터스',addr:'서울 성동구 독성로 15길 23',phones:'010-2354-2495',region:'서울',lat:37.5640,lng:127.0403},
+  {name:'카프라이즈',addr:'서울 강남구 율현동 99-10',phones:'010-4147-7340',region:'서울',lat:37.4827,lng:127.0897},
+  {name:'파렘모터스',addr:'경기 파주시 소라지로 138-34',phones:'010-5253-9099',region:'경기',lat:37.7281,lng:126.7644},
+  {name:'와이오토모빌리티',addr:'서울 성동구 성수이로 20길 36',phones:'010-7788-1547',region:'서울',lat:37.5435,lng:127.0614},
+  {name:'래오모터스',addr:'서울 성동구 성수2기3동 277-140',phones:'010-8385-4730',region:'서울',lat:37.5431,lng:127.0591},
+  {name:'강서 글로벌 자동차 유리',addr:'서울 강서구 등촌로 95 1층 (유리 교체 전문)',phones:'1811-6292',region:'서울',lat:37.5531,lng:126.8616},
+  {name:'천안 SJ모터스',addr:'충남 천안시 동남구 유량로 204-1',phones:'041-553-1100',region:'충남',lat:36.8151,lng:127.1139},
+  {name:'카닥테크센터 아이모터스',addr:'경기 용인시 수지구 용구대로 2699',phones:'010-9999-6661',region:'경기',lat:37.3219,lng:127.0953},
+  {name:'용인 커스텀W',addr:'경기 용인시 모현읍 왕림로 164',phones:'031-765-7886',region:'경기',lat:37.3512,lng:127.2148},
+  {name:'고양 하이클래스 (르노코리아)',addr:'경기 고양시 일산서구 벚꽃길115번길 82-25',phones:'031-926-2030',region:'경기',lat:37.6853,lng:126.7486},
+];
+
+let userLat=null,userLng=null,acResults=[],nameFilter=null;
+
+function deg2rad(d){return d*(Math.PI/180);}
+function getDist(la1,lo1,la2,lo2){
+  const R=6371,dLa=deg2rad(la2-la1),dLo=deg2rad(lo2-lo1);
+  const a=Math.sin(dLa/2)**2+Math.cos(deg2rad(la1))*Math.cos(deg2rad(la2))*Math.sin(dLo/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function fmtDist(d){return d<1?Math.round(d*1000)+'m':d.toFixed(1)+'km';}
+function mapUrl(addr){return `https://map.kakao.com/link/search/${encodeURIComponent(addr)}`;}
+
+function makeTeslaCard(it,rank,dist){
+  const isCrash=it.crash;
+  const rankEl=rank!==null
+    ?`<div class="rank-badge ${isCrash?'rank-crash':'rank-b'}">${rank}</div>`
+    :`<div class="rank-badge ${isCrash?'rank-crash':'rank-t'}">${isCrash?'⚒':'T'}</div>`;
+  const badges=[];
+  badges.push(`<span class="badge ${isCrash?'b-crash-off':'b-official'}">${isCrash?'공식 사고수리':'공식 서비스'}</span>`);
+  if(!it.hv) badges.push(`<span class="badge b-hv">고전압 불가</span>`);
+  if(dist!==null) badges.push(`<span class="badge b-dist">${fmtDist(dist)}</span>`);
+  badges.push(`<span class="badge b-region">${it.region}</span>`);
+  if(it.isNew) badges.push(`<span class="badge b-new">NEW</span>`);
+  return `<div class="card${isCrash?' crash-card':''}">
+    ${rankEl}
+    <div class="card-body">
+      <div class="card-name">${it.name}</div>
+      <div class="card-addr">${it.addr}</div>
+      <div class="card-meta">${badges.join('')}</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-call" href="tel:${it.phone}">${it.phone}</a>
+      <a class="btn-map" href="${mapUrl(it.addr)}" target="_blank" rel="noopener">지도</a>
+    </div>
+  </div>`;
+}
+function makeBodyCard(it,num,dist){
+  const ph=it.phones.split('\n')[0].split('/')[0].trim().replace(/\s/g,'');
+  const distBadge=dist!==null?`<span class="badge b-dist">${fmtDist(dist)}</span>`:'';
+  return `<div class="card">
+    <div class="rank-badge rank-b">${num}</div>
+    <div class="card-body">
+      <div class="card-name">${it.name}</div>
+      <div class="card-addr">${it.addr}</div>
+      <div class="card-phones">${it.phones.replace(/\n/g,'<br>')}</div>
+      <div class="card-meta"><span class="badge b-body">공인바디샵</span>${distBadge}<span class="badge b-region">${it.region}</span></div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-call" href="tel:${ph}">${ph}</a>
+      <a class="btn-map" href="${mapUrl(it.addr)}" target="_blank" rel="noopener">지도</a>
+    </div>
+  </div>`;
+}
+function makeCoopCard(it,rank,dist){
+  const distBadge=dist!==null?`<span class="badge b-dist">${fmtDist(dist)}</span>`:'';
+  const rk=rank!==null?`<div class="rank-badge rank-b">${rank}</div>`:`<div class="rank-badge rank-c">C</div>`;
+  return `<div class="card">
+    ${rk}
+    <div class="card-body">
+      <div class="card-name">${it.name}</div>
+      <div class="card-addr">${it.addr}</div>
+      <div class="card-phones">${it.phones}</div>
+      <div class="card-meta"><span class="badge b-coop">TKC협력</span>${distBadge}<span class="badge b-region">${it.region}</span></div>
+    </div>
+    <div class="card-actions">
+      <a class="btn-call" href="tel:${it.phones.replace(/\s/g,'')}">${it.phones}</a>
+      <a class="btn-map" href="${mapUrl(it.addr)}" target="_blank" rel="noopener">지도</a>
+    </div>
+  </div>`;
+}
+
+// 이름/주소로 항목 매칭 여부 확인
+function matchesName(it, q) {
+  const lq = q.toLowerCase();
+  return it.name.toLowerCase().includes(lq) ||
+         it.addr.toLowerCase().includes(lq) ||
+         (it.phones && it.phones.replace(/\s/g,'').includes(lq.replace(/\s/g,'')));
+}
+
+function renderList(data, makeCard, id1, id2) {
+  const hasDist = userLat !== null;
+  const isNameMode = nameFilter !== null;
+
+  let items = data.map((it, i) => ({
+    ...it,
+    origNum: i + 1,
+    dist: hasDist ? getDist(userLat, userLng, it.lat, it.lng) : null
+  }));
+
+  // 이름 필터 모드: 매칭되는 것만 표시
+  if (isNameMode) {
+    items = items.filter(it => matchesName(it, nameFilter));
+  }
+
+  // 거리순 정렬 (이름 필터 모드에서도 GPS 있으면 거리 표시)
+  if (hasDist && !isNameMode) items.sort((a, b) => a.dist - b.dist);
+
+  const html = items.length > 0
+    ? items.map((it, i) => makeCard(it, isNameMode ? null : (hasDist ? i + 1 : null), it.dist)).join('')
+    : `<div style="padding:2rem 0;text-align:center;color:var(--text3);font-size:13px;">"${nameFilter}" 검색 결과 없음</div>`;
+
+  if (id1) document.getElementById(id1).innerHTML = html;
+  if (id2) document.getElementById(id2).innerHTML = html;
+}
+
+function renderAll() {
+  const hasDist = userLat !== null;
+  const isNameMode = nameFilter !== null;
+  renderList(TESLA, (it,r,d) => makeTeslaCard(it,r,d), 'tesla-list', 'tesla-list2');
+  renderList(BODY,  (it,r,d) => makeBodyCard(it, (!isNameMode && hasDist) ? r : it.origNum, d), 'body-list', 'body-list2');
+  renderList(COOP,  (it,r,d) => makeCoopCard(it,r,d), 'coop-list', 'coop-list2');
+  const lbl = isNameMode
+    ? `테슬라 공인 서비스센터 — "${nameFilter}" 검색 결과`
+    : hasDist ? '테슬라 공인 서비스센터 · 가까운 순' : '테슬라 공인 서비스센터 · 16곳';
+  ['tesla-label','tesla-label2'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=lbl; });
+}
+
+function showStatus(text){
+  const el=document.getElementById('status-bar');
+  document.getElementById('status-text').innerHTML=text;
+  el.classList.remove('hidden');
+}
+function hideStatus(){document.getElementById('status-bar').classList.add('hidden');}
+
+function applyCoords(lat,lng,label){
+  userLat=lat;userLng=lng;
+  document.getElementById('loc-dot').classList.remove('on');
+  document.getElementById('loc-text').textContent='내 위치 사용하기 — 탭하여 허용';
+  showStatus(`<b>${label}</b> 기준으로 가까운 순 정렬`);
+  renderAll();
+}
+
+// 이름 후보: 모든 데이터에서 이름 매칭
+function getNameCandidates(q) {
+  const results = [];
+  const all = [
+    ...TESLA.map(it => ({...it, type:'센터'})),
+    ...BODY.map(it => ({...it, type:'바디샵'})),
+    ...COOP.map(it => ({...it, type:'협력점'})),
+  ];
+  for (const it of all) {
+    if (it.name.toLowerCase().includes(q.toLowerCase())) {
+      results.push({ kind:'name', label:it.name, sub:`${it.type} · ${it.region}`, q });
+      if (results.length >= 4) break;
+    }
+  }
+  return results;
+}
+
+// 지역 단위 우선순위: 낮을수록 먼저 표시
+function geoRank(g) {
+  const n = g.n;
+  // 광역시·특별시·도 단위 (서울, 부산, 광주, 경기 등)
+  if (/광역시$|특별시$|특별자치시$|특별자치도$|도$/.test(g.p) && !n.includes('구') && !n.includes('시') && !n.includes('군')) return 0;
+  // 시 단위 (광주시, 수원시 등)
+  if (n.endsWith('시')) return 1;
+  // 군 단위
+  if (n.endsWith('군')) return 2;
+  // 구 단위
+  if (n.endsWith('구')) return 3;
+  // 읍·면·동 단위
+  if (n.endsWith('읍') || n.endsWith('동') || n.endsWith('면')) return 4;
+  // 나머지 (홍대, 판교, 동탄 등 별칭)
+  return 5;
+}
+
+function getCandidates(q) {
+  const results = [];
+  const seen = new Set();
+  const gs = [...GEO];
+
+  // 1) 센터 이름 매칭 후보
+  const nameHits = getNameCandidates(q);
+  nameHits.forEach(r => results.push(r));
+
+  // 2) "시도+구/시" 조합 입력 처리 (예: "인천 서구", "부산 강서구")
+  //    → 조합 매칭 결과를 최상단에 표시
+  const parts = q.split(/\s+/);
+  if (parts.length >= 2) {
+    const regionHint = parts[0];
+    const nameHint   = parts.slice(1).join(' ');
+    const comboMatches = gs.filter(g =>
+      g.p.includes(regionHint) && g.n.includes(nameHint)
+    );
+    comboMatches.forEach(g => {
+      const key = g.n + '|' + g.p;
+      if (!seen.has(key)) {
+        seen.add(key);
+        results.push({ kind:'geo', geo:g, label:g.n, sub:g.p, tag:null });
+      }
+    });
+  }
+
+  // 3) 일반 지역 매칭 — 이름+지역 조합으로 seen 관리, 단위 우선순위로 정렬
+  const geoMatches = [];
+  for (const g of gs) {
+    const key = g.n + '|' + g.p;
+    if ((g.n.includes(q) || g.p.includes(q)) && !seen.has(key)) {
+      seen.add(key);
+      geoMatches.push(g);
+    }
+  }
+  // 광역 > 시 > 군 > 구 > 동 순으로 정렬
+  geoMatches.sort((a, b) => geoRank(a) - geoRank(b));
+  geoMatches.slice(0, 5).forEach(g =>
+    results.push({ kind:'geo', geo:g, label:g.n, sub:g.p, tag:null })
+  );
+
+  // 4) 도로명 파싱 후보 (이름 검색이 아닌 경우에만)
+  if (q.length >= 2 && nameHits.length === 0) {
+    const r = resolveQuery(q);
+    if (r && !seen.has(r.geo.n + '|' + r.geo.p)) {
+      results.push({ kind:'geo', geo:r.geo, label:`"${q}"`, sub:r.geo.p, tag:r.geo.n+' 기준' });
+    }
+  }
+
+  return results.slice(0, 8);
+}
+
+function onInput() {
+  const q = document.getElementById('search-input').value.trim();
+  const ac = document.getElementById('ac');
+  if (q.length < 1) { ac.classList.add('hidden'); return; }
+  acResults = getCandidates(q);
+  if (!acResults.length) { ac.classList.add('hidden'); return; }
+
+  // 동명이지역 감지: 같은 label이 여러 개면 지역명 강조
+  const labelCount = {};
+  acResults.forEach(r => { labelCount[r.label] = (labelCount[r.label] || 0) + 1; });
+
+  ac.innerHTML = acResults.map((r, i) => {
+    const isDuplicate = labelCount[r.label] > 1;
+    const displayLabel = isDuplicate && r.kind === 'geo'
+      ? `${r.label} <span style="color:var(--text3);font-size:11px;">— ${r.sub}</span>`
+      : r.label;
+    return `
+    <div class="ac-item" onclick="selectAC(${i})">
+      <span class="ac-name">${displayLabel}</span>
+      ${r.tag
+        ? `<span class="ac-tag">${r.tag}</span>`
+        : r.kind === 'name'
+          ? `<span class="ac-tag" style="background:var(--green-bg);color:var(--green)">이름 검색</span>`
+          : !isDuplicate ? `<span class="ac-region">${r.sub}</span>` : ''
+      }
+    </div>`;
+  }).join('');
+  ac.classList.remove('hidden');
+}
+
+function selectAC(i) {
+  const r = acResults[i];
+  document.getElementById('ac').classList.add('hidden');
+  if (r.kind === 'name') {
+    // 이름 필터 모드
+    document.getElementById('search-input').value = r.label;
+    applyNameFilter(r.q || r.label);
+  } else {
+    // 지역 모드
+    const val = r.label.startsWith('"') ? document.getElementById('search-input').value : r.geo.n;
+    document.getElementById('search-input').value = val;
+    applyCoords(r.geo.lat, r.geo.lng, `${r.geo.n} (${r.geo.p})`);
+  }
+}
+
+function applyNameFilter(q) {
+  nameFilter = q;
+  // 이름 필터 시 위치 정렬은 유지하되 필터 우선
+  showStatus(`🔍 <b>"${q}"</b> 이름 검색 결과`);
+  renderAll();
+  // 전체 탭으로 이동
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab')[0].classList.add('active');
+  ['tesla','body','coop','rent'].forEach(t => document.getElementById('tab-'+t).classList.add('hidden'));
+  document.getElementById('tab-all').classList.remove('hidden');
+}
+function onKey(e){
+  if(e.key==='Enter'){document.getElementById('ac').classList.add('hidden');doSearch();}
+  if(e.key==='Escape') document.getElementById('ac').classList.add('hidden');
+}
+function doSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  if (!q) return;
+  document.getElementById('ac').classList.add('hidden');
+
+  // 1) 이름 매칭 우선 체크 (완전 포함되는 게 있으면 이름 검색)
+  const nameHits = getNameCandidates(q);
+  if (nameHits.length > 0) {
+    applyNameFilter(q);
+    return;
+  }
+
+  // 2) 지역 검색
+  const resolved = resolveQuery(q);
+  if (resolved) {
+    nameFilter = null; // 지역 모드면 이름 필터 해제
+    const label = resolved.method === 'direct'
+      ? `${resolved.geo.n} (${resolved.geo.p})`
+      : `"${q}" → ${resolved.geo.n} (${resolved.geo.p}) 기준`;
+    applyCoords(resolved.geo.lat, resolved.geo.lng, label);
+  } else {
+    showStatus(`"<b>${q}</b>" — 찾을 수 없습니다. 센터명 또는 지역명으로 검색해보세요.`);
+  }
+}
+function requestGPS(){
+  if(!navigator.geolocation){alert('위치 서비스를 지원하지 않는 브라우저입니다.');return;}
+  document.getElementById('loc-text').textContent='위치 확인 중...';
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLat=pos.coords.latitude;userLng=pos.coords.longitude;
+    document.getElementById('loc-dot').classList.add('on');
+    document.getElementById('loc-text').textContent='내 위치 기준으로 정렬 중';
+    document.getElementById('search-input').value='';
+    showStatus('<b>내 현재 위치</b> 기준으로 가까운 순 정렬');
+    renderAll();
+  },()=>{
+    document.getElementById('loc-text').textContent='위치 허용 안됨 — 검색으로 찾아보세요';
+  });
+}
+function resetLocation() {
+  userLat = null; userLng = null; nameFilter = null;
+  document.getElementById('loc-dot').classList.remove('on');
+  document.getElementById('loc-text').textContent = '내 위치 사용하기 — 탭하여 허용';
+  document.getElementById('search-input').value = '';
+  document.getElementById('ac').classList.add('hidden');
+  hideStatus(); renderAll();
+}
+function showTab(type,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  ['all','tesla','body','coop','rent'].forEach(t=>document.getElementById('tab-'+t).classList.add('hidden'));
+  document.getElementById('tab-'+type).classList.remove('hidden');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.search-wrap')) document.getElementById('ac').classList.add('hidden');
+});
+renderAll();
+</script>
+</body>
+</html>
